@@ -4,19 +4,19 @@ El objetivo de este taller es implementar una arquitectura **RAG (Retrieval-Augm
 
 En este repositorio se aplicaron los conocimientos del tutorial de LangChain **[Build a Simple LLM Application with LCEL](https://python.langchain.com/docs/tutorials/llm_chain/)** y **[Build a Retrieval Augmented Generation (RAG) App](https://python.langchain.com/docs/tutorials/rag/#setup)**. Se creó un entorno virtual en Python junto con un archivo Jupyter Notebook para la ejecución del tutorial. También se incluye un archivo en Python para el servidor de RAG.
 
-La arquitectura RAG consiste en integrar un modelo LLM (Large Language Model) con datos privados adicionales que aumenten su capacidad de respuesta, usando información que no es de dominio público. En este caso, los datos adicionales son el **reglamento de posgrados de la Escuela Colombiana de Ingeniería Julio Garavito**.
+La arquitectura RAG consiste en integrar un modelo LLM (Large Language Model) con datos privados adicionales que aumenten su capacidad de respuesta, usando información que no es de dominio público. En este caso, los datos adicionales son el **Reglamento Práctica Profesional de la Escuela Colombiana de Ingeniería Julio Garavito**.
 
 ## Arquitectura
 Para la creación del RAG se aplicó la siguiente arquitectura:
 ![Arquitectura](content/arch.png)
 
-- **Private data source**: Es un PDF con el reglamento de posgrados de la universidad.
+- **Private data source**: Es un PDF con el Reglamento Práctica Profesional de la universidad.
 - **Data splitting and vectorization (Embeddings)**: Para este proceso usamos `PyPDFLoader` para cargar los datos, `RecursiveCharacterTextSplitter` para dividir el texto, y `Chroma` junto con `vectorstore` para la vectorización y creación de embeddings.
 - **Vector database**: Contiene toda la información procesada y almacenada como vectores de embeddings de cadenas de texto.
 - **LLM**: Usaremos el modelo ChatGPT.
 
 ## Prompt with question
-El prompt se diseñó de manera que, al hacer una pregunta, el modelo responda usando un contexto específico. En este caso, el contexto es el Reglamento de Posgrados. Si no se encuentra una respuesta en los datos adicionales, se incluye una respuesta predeterminada. Además, cada respuesta correcta incluirá la frase final "¿Tienes alguna otra duda?" para mejorar la interacción. El prompt está diseñado para que la respuesta haga referencia a los artículos de información suministrada en el reglamento.
+El prompt se diseñó de manera que, al hacer una pregunta, el modelo responda usando un contexto específico. En este caso, el contexto es el Reglamento Práctica Profesional. Si no se encuentra una respuesta en los datos adicionales, se incluye una respuesta predeterminada. Además, cada respuesta correcta incluirá la frase final "¿Tienes alguna otra duda?" para mejorar la interacción. El prompt está diseñado para que la respuesta haga referencia a los artículos de información suministrada en el reglamento.
 
 
 ```
@@ -80,7 +80,7 @@ Recuerda configurar la API_KEY antes de la ejecuion del servidor y del archivo J
 
 ### RAG en Acción
 
-Una vez el servidor esté en funcionamiento, puedes realizar tus consultas sobre cualquier duda relacionada con el reglamento de posgrados de la universidad. Además, en el archivo Jupyter encontrarás ejemplos de preguntas que muestran el modelo LLM en acción, incluyendo preguntas que **pueden** ser respondidas (leyendo el texto) y preguntas que **no pueden** ser respondidas basándose únicamente en el reglamento.
+Una vez el servidor esté en funcionamiento, puedes realizar tus consultas sobre cualquier duda relacionada con el Reglamento Práctica Profesional de la universidad. Además, en el archivo Jupyter encontrarás ejemplos de preguntas que muestran el modelo LLM en acción, incluyendo preguntas que **pueden** ser respondidas (leyendo el texto) y preguntas que **no pueden** ser respondidas basándose únicamente en el reglamento.
 
 A continuación, se presentan algunos ejemplos de interacción en el playground:
 
