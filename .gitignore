@@ -1,0 +1,14 @@
+# Ignora el entorno virtual .venv en la raíz del proyecto
+.venv/
+.venv/*
+
+# Ignorar archivos específicos generados por el entorno virtual
+.venv/bin/
+.venv/lib/
+.venv/include/
+.venv/pyvenv.cfg
+
+# Si usas otros entornos virtuales con nombres diferentes
+venv/
+env/
+env.bak/
